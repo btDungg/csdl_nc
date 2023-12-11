@@ -25,7 +25,22 @@ CREATE TABLE ChongChiDinh
 	MaBenhNhan char(12),
 	PRIMARY KEY(MaThuoc,MaBenhNhan)
 )
+--12--
+CREATE TABLE HoSoBenhNhan
+(
+	MaBenhNhan char(12),
+	HoTen nvarchar(35) NOT NULL,
+	GioiTinh nchar(3) CHECK (GioiTinh IN ('Nam', 'Nữ')),
+	NgaySinh DATE CHECK (NgaySinh < GETDATE()),
+	DiaChi nvarchar(50) NOT NULL,
+	SoDienThoai char(10) NOT NULL,
+	TongTienDieuTri float CHECK(TongTienDieuTri >= 0),
+	TongTienThanhToan float CHECK (TongTienThanhToan>= 0),
+	GhiChu nvarchar(100),
+	PRIMARY KEY (MaBenhNhan),
+)
 
+--7--
 create table PhongKham
 (
      MaPhong char(4),
