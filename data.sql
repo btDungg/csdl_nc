@@ -15,3 +15,11 @@ CREATE TABLE PhanCongDieuTri
 	VaiTro nvarchar(10),
 	PRIMARY KEY(MaNhaSi,MaKeHoach)
 )
+
+CREATE TABLE DieuTri
+(
+	MaDieuTri char(4) NOT NULL,
+	MoTa nvarchar(40),
+	PhiDieuTri float,
+	PRIMARY KEY(MaDieuTri)
+)
