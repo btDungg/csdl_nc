@@ -9,7 +9,20 @@ create table CuocHen
 )
 
 
-
+--13--
+CREATE TABLE ThanhToan
+(
+	MaThanhToan char(12) ,
+	MaBenhNhan char(12) NOT NULL,
+	NgayGiaoDich DATE CHECK (NgayGiaoDich < GETDATE()) NOT NULL,
+	NguoiThanhToan nvarchar(35),
+	TongTien float CHECK (TongTien >= 0) NOT NULL,
+	TienDaTra float CHECK (TienDaTra >=0 ) NOT NULL,
+	TienThoi float CHECK (TienThoi >=0) NOT NULL,
+	LoaiThanhToan nvarchar(35),
+	GhiChu nvarchar(100),
+	PRIMARY KEY(MaThanhToan)
+)
 --14--
 CREATE TABLE DieuTri
 (
@@ -30,7 +43,7 @@ CREATE TABLE HoSoBenhNhan
 (
 	MaBenhNhan char(12),
 	HoTen nvarchar(35) NOT NULL,
-	GioiTinh nchar(3) CHECK (GioiTinh IN ('Nam', 'Nữ')),
+	GioiTinh nchar(3) CHECK (GioiTinh IN (N'Nam', N'Nữ')),
 	NgaySinh DATE CHECK (NgaySinh < GETDATE()),
 	DiaChi nvarchar(50) NOT NULL,
 	SoDienThoai char(10) NOT NULL,
