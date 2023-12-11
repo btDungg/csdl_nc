@@ -10,6 +10,22 @@ create table CuocHen
 
 
 
+--14--
+CREATE TABLE DieuTri
+(
+	MaDieuTri char(4) NOT NULL,
+	MoTa nvarchar(40),
+	PhiDieuTri float CHECK (PhiDieuTri >= 0),
+	PRIMARY KEY(MaDieuTri)
+)
+--11--
+CREATE TABLE ChongChiDinh
+(
+	MaThuoc char(12) NOT NULL,
+	MaBenhNhan char(12),
+	PRIMARY KEY(MaThuoc,MaBenhNhan)
+)
+
 create table PhongKham
 (
      MaPhong char(4),
