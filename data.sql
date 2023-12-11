@@ -1,108 +1,4 @@
-<<<<<<< HEAD
-﻿
-create table CuocHen 
-(
-      MaCuocHen char(12),
-	  MaNguoiTao char(6),
-	  MaBenhNhan char(12),
-	  ThoiGian DateTime NOT NULL ,
-	  TinhTrang nvarchar(12) CONSTRAINT CK_TT CHECK (TinhTrang IN (N'Tái khám', N'Cuộc hẹn mới'))
-)
-
-
---13--
-CREATE TABLE ThanhToan
-(
-	MaThanhToan char(12) ,
-	MaBenhNhan char(12) NOT NULL,
-	NgayGiaoDich DATE CHECK (NgayGiaoDich < GETDATE()) NOT NULL,
-	NguoiThanhToan nvarchar(35),
-	TongTien float CHECK (TongTien >= 0) NOT NULL,
-	TienDaTra float CHECK (TienDaTra >=0 ) NOT NULL,
-	TienThoi float CHECK (TienThoi >=0) NOT NULL,
-	LoaiThanhToan nvarchar(35),
-	GhiChu nvarchar(100),
-	PRIMARY KEY(MaThanhToan)
-)
---14--
-CREATE TABLE DieuTri
-(
-	MaDieuTri char(4) NOT NULL,
-	MoTa nvarchar(40),
-	PhiDieuTri float CHECK (PhiDieuTri >= 0),
-	PRIMARY KEY(MaDieuTri)
-)
---11--
-CREATE TABLE ChongChiDinh
-(
-	MaThuoc char(12) NOT NULL,
-	MaBenhNhan char(12),
-	PRIMARY KEY(MaThuoc,MaBenhNhan)
-)
---12--
-CREATE TABLE HoSoBenhNhan
-(
-	MaBenhNhan char(12),
-	HoTen nvarchar(35) NOT NULL,
-	GioiTinh nchar(3) CHECK (GioiTinh IN (N'Nam', N'Nữ')),
-	NgaySinh DATE CHECK (NgaySinh < GETDATE()),
-	DiaChi nvarchar(50) NOT NULL,
-	SoDienThoai char(10) NOT NULL,
-	TongTienDieuTri float CHECK(TongTienDieuTri >= 0),
-	TongTienThanhToan float CHECK (TongTienThanhToan>= 0),
-	GhiChu nvarchar(100),
-	PRIMARY KEY (MaBenhNhan),
-)
-
---7--
-create table PhongKham
-(
-     MaPhong char(4),
-	 DiaChi nvarchar(50) NOT NULL
-
-)
-
-
-
---16
-CREATE TABLE PhanCongDieuTri
-(
-	MaNhaSi char(6) NOT NULL,
-	MaKeHoach char(10) NOT NULL FOREIGN KEY REFERENCES KeHoachDieuTri(MaKeHoach),
-	VaiTro nvarchar(10) NOT NULL,
-	PRIMARY KEY(MaNhaSi,MaKeHoach)
-)
-
---19
-CREATE TABLE Rang
-(
-	MaRang char(5) NOT NULL PRIMARY KEY,
-	TenRang nvarchar(20) NOT NULL
-)
-
---18
-CREATE TABLE BeMatRang
-(
-	MaMatRang char(13) NOT NULL,
-	MaRang char(5) NOT NULL FOREIGN KEY REFERENCES Rang(MaRang),
-	TenMatRang nvarchar(20) NOT NULL,
-	PRIMARY KEY (MaMatRang,MaRang)
-)
-
---17
-CREATE TABLE RangDieuTri
-(
-	MaRang char(5) NOT NULL,
-	MaMatRang char(13) NOT NULL,
-	MaKeHoach char(10) NOT NULL FOREIGN KEY REFERENCES KeHoachDieuTri(MaKeHoach),
-	PRIMARY KEY(MaRang,MaMatRang,MaKeHoach),
-	FOREIGN KEY(MaRang,MaMatRang)
-	REFERENCES BeMatRang(MaRang,MaMatRang)
-)
-
-=======
 ﻿-- 1.NguoiDung --
->>>>>>> origin/TheDuyet
 create table NguoiDung
 (
 	MaNguoiDung char(6) primary key,
@@ -164,16 +60,15 @@ create table PhanCongCuocHen
 		references CuocHen (MaCuocHen)
 )
 
-
-
---14--
-CREATE TABLE DieuTri
+--7--
+create table PhongKham
 (
-	MaDieuTri char(4) NOT NULL,
-	MoTa nvarchar(40),
-	PhiDieuTri float CHECK (PhiDieuTri >= 0),
-	PRIMARY KEY(MaDieuTri)
+     MaPhong char(4),
+	 DiaChi nvarchar(50) NOT NULL
+
 )
+
+
 --11--
 CREATE TABLE ChongChiDinh
 (
@@ -181,12 +76,42 @@ CREATE TABLE ChongChiDinh
 	MaBenhNhan char(12),
 	PRIMARY KEY(MaThuoc,MaBenhNhan)
 )
-
-create table PhongKham
+--12--
+CREATE TABLE HoSoBenhNhan
 (
-     MaPhong char(4),
-	 DiaChi nvarchar(50) NOT NULL
+	MaBenhNhan char(12),
+	HoTen nvarchar(35) NOT NULL,
+	GioiTinh nchar(3) CHECK (GioiTinh IN (N'Nam', N'Nữ')),
+	NgaySinh DATE CHECK (NgaySinh < GETDATE()),
+	DiaChi nvarchar(50) NOT NULL,
+	SoDienThoai char(10) NOT NULL,
+	TongTienDieuTri float CHECK(TongTienDieuTri >= 0),
+	TongTienThanhToan float CHECK (TongTienThanhToan>= 0),
+	GhiChu nvarchar(100),
+	PRIMARY KEY (MaBenhNhan),
+)
 
+--13--
+CREATE TABLE ThanhToan
+(
+	MaThanhToan char(12) ,
+	MaBenhNhan char(12) NOT NULL,
+	NgayGiaoDich DATE CHECK (NgayGiaoDich < GETDATE()) NOT NULL,
+	NguoiThanhToan nvarchar(35),
+	TongTien float CHECK (TongTien >= 0) NOT NULL,
+	TienDaTra float CHECK (TienDaTra >=0 ) NOT NULL,
+	TienThoi float CHECK (TienThoi >=0) NOT NULL,
+	LoaiThanhToan nvarchar(35),
+	GhiChu nvarchar(100),
+	PRIMARY KEY(MaThanhToan)
+)
+--14--
+CREATE TABLE DieuTri
+(
+	MaDieuTri char(4) NOT NULL,
+	MoTa nvarchar(40),
+	PhiDieuTri float CHECK (PhiDieuTri >= 0),
+	PRIMARY KEY(MaDieuTri)
 )
 
 -- 15
@@ -207,31 +132,17 @@ create table KeHoachDieuTri
 		references BenhNhan (MaBenhNhan)
 ) 
 
+
+
+
 --16
 CREATE TABLE PhanCongDieuTri
 (
 	MaNhaSi char(6) NOT NULL,
 	MaKeHoach char(10) NOT NULL FOREIGN KEY REFERENCES KeHoachDieuTri(MaKeHoach),
 	VaiTro nvarchar(10) NOT NULL,
-	PRIMARY KEY(MaNhaSi, MaKeHoach)
+	PRIMARY KEY(MaNhaSi,MaKeHoach)
 )
-
---19
-CREATE TABLE Rang
-(
-	MaRang char(5) NOT NULL PRIMARY KEY,
-	TenRang nvarchar(20) NOT NULL
-)
-
---18
-CREATE TABLE BeMatRang
-(
-	MaMatRang char(13) NOT NULL,
-	MaRang char(5) NOT NULL FOREIGN KEY REFERENCES Rang(MaRang),
-	TenMatRang nvarchar(20) NOT NULL,
-	PRIMARY KEY (MaMatRang,MaRang)
-)
-
 --17
 CREATE TABLE RangDieuTri
 (
@@ -242,5 +153,26 @@ CREATE TABLE RangDieuTri
 	FOREIGN KEY(MaRang,MaMatRang)
 	REFERENCES BeMatRang(MaRang,MaMatRang)
 )
+--18
+CREATE TABLE BeMatRang
+(
+	MaMatRang char(13) NOT NULL,
+	MaRang char(5) NOT NULL FOREIGN KEY REFERENCES Rang(MaRang),
+	TenMatRang nvarchar(20) NOT NULL,
+	PRIMARY KEY (MaMatRang,MaRang)
+)
+
+--19
+CREATE TABLE Rang
+(
+	MaRang char(5) NOT NULL PRIMARY KEY,
+	TenRang nvarchar(20) NOT NULL
+)
+
+
+
+
+
+
 
 
