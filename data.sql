@@ -16,18 +16,26 @@ CREATE TABLE PhanCongDieuTri
 	PRIMARY KEY(MaNhaSi,MaKeHoach)
 )
 
-<<<<<<< HEAD
+--14--
 CREATE TABLE DieuTri
 (
 	MaDieuTri char(4) NOT NULL,
 	MoTa nvarchar(40),
-	PhiDieuTri float,
+	PhiDieuTri float CHECK (PhiDieuTri >= 0),
 	PRIMARY KEY(MaDieuTri)
-=======
+)
+--11--
+CREATE TABLE ChongChiDinh
+(
+	MaThuoc char(12) NOT NULL,
+	MaBenhNhan char(12),
+	PRIMARY KEY(MaThuoc,MaBenhNhan)
+)
+
 create table PhongKham
 (
      MaPhong char(4),
 	 DiaChi nvarchar(50) NOT NULL
 
->>>>>>> 37f8feb1f5e9755a01f259363026df56e14afeea
+
 )
