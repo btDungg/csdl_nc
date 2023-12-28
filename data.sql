@@ -260,7 +260,7 @@ END;
 
 go
 BULK INSERT NguoiDung
-FROM 'C:\Users\dungtb\Desktop\CSDL_NC\csdl_nc\NguoiDung.csv'
+FROM 'D:\CSDLNC\csdl_nc\NguoiDung.csv'
 WITH (
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
@@ -272,7 +272,7 @@ WITH (
 go
 ----insert tu file
 BULK INSERT HoSoBenhNhan
-FROM 'C:\Users\dungtb\Desktop\CSDL_NC\csdl_nc\HSBN.csv'
+FROM 'D:\CSDLNC\csdl_nc\HSBN.csv'
 WITH (
     FIELDTERMINATOR = ',',
     ROWTERMINATOR = '\n',
